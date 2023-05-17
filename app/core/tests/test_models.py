@@ -1,5 +1,7 @@
 from django.test import TestCase
 from django.contrib.auth import get_user_model
+from django.utils import timezone
+from core.models import Grid
 
 
 def sample_user(email='test@koa.co.ke', password='testpass'):
@@ -34,3 +36,13 @@ class UserModelTests(TestCase):
 
         self.assertTrue(user.is_superuser)
         self.assertTrue(user.is_staff)
+
+
+class GridModelTests(TestCase):
+    def create_grid(self, points="2,2;-1,30;20,11;4,5", ):
+        return Grid.objects.create(points=points, created_at=timezone.now())
+
+    def test_grid_creation(self):
+        grid = self.create_grid()
+        self.assertTrue(isinstance(grid, Grid))
+        self.assertEqual(grid.closest_points, '2,2;4,5')
