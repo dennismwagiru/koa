@@ -9,6 +9,8 @@ def sample_user(email='test@koa.co.ke', password='testpass'):
 
 class ModelTests(TestCase):
     def test_create_user_with_email_successful(self):
+        password = 'testpass'
+        user = sample_user(password=password)
         self.assertTrue(user.check_password(password))
 
     def test_new_user_email_normalized(self):
