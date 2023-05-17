@@ -33,3 +33,35 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
+
+
+class Grid(models.Model):
+    """Grid model to store grid points"""
+    points = models.TextField(null=False, blank=False,
+                              help_text="Semicolon separated values")
+    closest_points = models.TextField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def find_closest_points(self):
+        point_list = self.points.split(';')
+
+        closest_distance = float('inf')
+        closest_points = []
+
+        for i in range(len(point_list)):
+            x1, y1 = map(int, point_list[i].split(','))
+
+            for j in range(i+1, len(point_list)):
+                x2, y2 = map(int, point_list[j].split(','))
+
+                distance = ((x2-x1) ** 2 + (y2-y1) ** 2) ** 0.5
+
+                if distance < closest_distance:
+                    closest_distance = distance
+                    closest_points = [point_list[i], point_list[j]]
+
+        return ';'.join(closest_points)
+
+    def save(self, *args, **kwargs):
+        self.closest_points = self.find_closest_points()
+        return super().save(*args, **kwargs)
