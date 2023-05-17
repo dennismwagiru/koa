@@ -5,6 +5,8 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile
+      args:
+        user: koa
     image: koa
     container_name: koa-app
     restart: unless-stopped
@@ -32,7 +34,7 @@ services:
     environment:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASS}
-      - POSTGRES_DB=${DB_HOST}
+      - POSTGRES_DB=${DB_NAME}
 
 volumes:
   postgres_data:
