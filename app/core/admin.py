@@ -25,4 +25,9 @@ class UserAdmin(BaseUserAdmin):
     )
 
 
+class GridAdmin(admin.ModelAdmin):
+    list_display = [f.name for f in models.Grid._meta.fields]
+
+
 admin.site.register(models.User, UserAdmin)
+admin.site.register(models.Grid, GridAdmin)
