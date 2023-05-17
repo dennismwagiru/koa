@@ -5,6 +5,9 @@ ENV PYTHONUNBUFFERED 1
 
 ARG user
 
+RUN rm -rf /var/cache/apk/* && \
+    rm -rf /tmp/*
+
 RUN apk add --update --no-cache --virtual .tmp-build-deps \
       gcc libc-dev linux-headers postgresql-dev python3-dev musl-dev
 
