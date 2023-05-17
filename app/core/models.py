@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager,\
     PermissionsMixin
+from django.core.validators import RegexValidator
 
 
 class UserManager(BaseUserManager):
@@ -38,7 +39,14 @@ class User(AbstractBaseUser, PermissionsMixin):
 class Grid(models.Model):
     """Grid model to store grid points"""
     points = models.TextField(null=False, blank=False,
-                              help_text="Semicolon separated values")
+                              help_text="Semicolon separated values",
+                              validators=[
+                                RegexValidator(
+                                    r"^-?\d+,-?\d+(;-?\d+,-?\d+)*$",
+                                    message="Set of points should be "
+                                            "semicolon separated"
+                                )
+                              ])
     closest_points = models.TextField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 

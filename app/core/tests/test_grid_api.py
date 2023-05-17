@@ -37,4 +37,4 @@ class GridApiTests(TestCase):
             closest_points='2,2;4,5'
         ).exists()
         self.assertTrue(exists)
-        self.assertEqual(res.status_code, status.HTTP_200_OK)
+        self.assertEqual(res.status_code, status.HTTP_201_CREATED)
