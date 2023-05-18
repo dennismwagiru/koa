@@ -34,6 +34,8 @@ Additionally, please add an admin interface for viewing values stored on the DB.
     ```bash
        make install
     ```
+   Navigate to <a href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a> to test the end-point
+
 
 3. Post Grid
     ```bash
