@@ -14,7 +14,8 @@ And then in this case the result would be:
 Additionally, please add an admin interface for viewing values stored on the DB. And add unit tests where it makes sense.
 
 ### Requirements
-* This application si configured to run on *Docker*. It should therefore be preinstalled
+* Git is required to clone the application. Else you can download as a zip file, extract it and proceed with step 2
+* This application is configured to run on *Docker*. It should therefore be preinstalled
 
   | Service    | Port |
   |------------|------|
