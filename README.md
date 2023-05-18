@@ -13,11 +13,8 @@ And then in this case the result would be:
 
 Additionally, please add an admin interface for viewing values stored on the DB. And add unit tests where it makes sense.
 
-### Tech-stack
-* postgresql
-* python3
-* django
-* django-rest-framework
+### Requirements
+* This application si configured to run on *Docker*. It should therefore be preinstalled
 
   | Service    | Port |
   |------------|------|
